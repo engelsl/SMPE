@@ -49,6 +49,42 @@ Stockage : GitHub; GitLab; plusieur endroit
 
 Exigence d'un accès à l'ensemble des données et des procedures de calculs
 
+## Le document computationnel
+
+La science moderne est basé sur des données qui sont analysé par de nombreux logiciels différents -> si les resultats ne sont pas bons on revient sur les données jusqu'a ce qu'on trouve des résultats. Puis on publie un article avec les derniers resultats obtenu en masquant toutes les recherches précédentes qui ont permis d'arriver au resultat.
+
+Le document computationnel permet de combiner zone de text et zone de code dont le resultat est un pdf avec les blocks zone texte, code et résultats selon une selection fait par l'utilisateur
+
+Exemple de documents computationnels :
+1. Jupyter (Python, Markdown)
+2. Rstudio (R, Markdown)
+3. Org mode (Python et R, LateX)
+
+
+## Trvailler avec les autres 
+
+Rendre un document imprimable à partir d'un document computationnel demande d'avoir une configuration parfaite de l'environnement ce qui prends du temps 
+
+**Reaction possibles des co-auteurs** :
+1. *Enthousiastes* : demande de gerer le SAV (compatibilité, gerer la complexite) -> meilleur facon de s'assurer que tout est roproductible
+2. *Bienveillant font des efforts* : Laisse la partie code de cote mais edite le texte de l'article
+3. *Refractaire* : Dans ce cas la faire deux documents un computationnel et un document classique afin de pouvoir faire des modification rapidement dans le document computationnel.
+
+**Publier / Partager un document**
+
+GitHub/GitLab : Rends tout public (même l'historique) -> faire attention a bien faire le ménage avant de tout publier 
+
+Site compagons : Runmycode , HAL , Figshare ... 
+
+**Conclusion**
+
+Adapter son mode opératoire en fonction des co-auteur et des contraintes imposé par la recherche. 
+
+
+
+
+
+
 
 
 
