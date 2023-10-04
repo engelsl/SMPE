@@ -81,6 +81,35 @@ Site compagons : Runmycode , HAL , Figshare ...
 Adapter son mode opératoire en fonction des co-auteur et des contraintes imposé par la recherche. 
 
 
+## Analyse comparée des différentes outils
+
+- Notebook Jupyter : 
+  - Facile à prendre en main
+  - Document dynamique
+
+- Un Journal org-mode :
+   - Un seul auteur
+   - Organisation chronologique
+   - Etiquettes
+   - Notes, liens, code
+ 
+- Cachier de laboratoire org-mode :
+  - Oragnisation semantique
+  - Conventions
+  - Plusieurs auteur
+  - Etiquettes pour auteurs, éxperiences,...
+
+- Un article reproductible :
+  - Plusieurs auteurs
+  - Regénérer les figures
+  - Revenir aux sources
+
+**Conclusion** 
+
+Peut importe l'outils le plus important c'est de collecter l'information, l'organiser et la rendre exploitable et enfin la rendre disponible.
+Chacun des outils Org-Mode, Juptyer et Rstudio ont leur avantages et leur defauts ont choisi en fonction de ce que l'on a besoin de faire. 
+
+
 
 
 
