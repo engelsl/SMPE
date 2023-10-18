@@ -111,6 +111,13 @@ Chacun des outils Org-Mode, Juptyer et Rstudio ont leur avantages et leur defaut
 
 
 
+**Exercice Challenger**
+
+Sur les données recoltés par la NASA on remarque que la temperature à une influence sur la fiabilité des joints mais que la pression joue aussi un role. Hors dans l'analyse proposé on ne prends en considérantion que l'impact de la température sur la defaillance des joints. 
+De plus lors de l'analyse des données recoltés on peut voir que il n'y a que la donnée la plus petite de température est 53F ce qui est bien superieur au 30F lors du test. Ce qui veut dire que la prediction de l'influence de la température sur la defaillance des joints n'est basé que sur des température supérieure à 50F. 
+
+
+
 
 
 
