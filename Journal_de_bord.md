@@ -117,6 +117,37 @@ Sur les données recoltés par la NASA on remarque que la temperature à une inf
 De plus lors de l'analyse des données recoltés on peut voir que il n'y a que la donnée la plus petite de température est 53F ce qui est bien superieur au 30F lors du test. Ce qui veut dire que la prediction de l'influence de la température sur la defaillance des joints n'est basé que sur des température supérieure à 50F. 
 
 
+# Module 3 : LA MAIN À LA PÂTE : UNE ANALYSE RÉPLICABLE
+
+## L'analyse reproductible 
+
+Une analyse de donnée replicable se caractérise par la mise à disposition de l'entierté du code utiliser pour obtenir les resultats ainsi que des explications pour que tout le monde puisse s'en servir.
+
+Le replicable permet de :
+ - Facile à refaire si les données changent
+ - Facile à modifier
+ - Facile à inspecter et verifier
+
+## Étude de cas : l'incidence de syndromes grippaux
+
+Pour modifier un jeu de données ne jamais le faire à la main, tout doit etre fait grâce à du code.
+
+
+## Importer les données avec Rstudio-R (parcour 3B)
+
+Pour trouver les lignes manquantes dans un document : *apply(data, 1, function(x) any(is.na(x)))*
+Pour indiquer à R lors de la lecture des données qu'un string particulier est considéré comme une donné manquante : *na.string = '-'*
+
+## Vérification et inspection avec Rstudio/R
+
+Pre-traitement des données permet de les adapter aux conventions du logiciel 
+De plus l'inspection par un outils visuel permet de verifier la veracite des données qui est souvent accompagner d'un code de verification 
+
+## Questions et réponses avec Rstudio/R
+
+Une analyse replicable doit contenir toute les etapes de traitement de données sous une forme executable 
+
+Il est important d'expliquer tout les choix qui peuvent influencer les resultats -> necessite d'exposer beacoup de details techniques 
 
 
 
