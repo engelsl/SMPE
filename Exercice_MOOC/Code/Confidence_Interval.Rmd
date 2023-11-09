@@ -1,0 +1,45 @@
+---
+title: "Confidence_Interval"
+author: "ENGELS Loïc"
+date: "2023-11-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+```
+
+Chargment des données 
+
+```{r}
+data = read.csv("measurements_03_47.csv", header=TRUE)
+data
+```
+
+Maintenant que l'on a les valeurs on groupe les données par les Attributs Size et Type afin d'avoir des dataframes pour chaque groupe(Size,Type) -> De ces groupes on va calculer la moyenne l'écart type et l'erreur standard du IC pour la variable TIME. 
+
+```{r}
+dfsum = data %>% group_by(Type,Size) %>% summarise(n=n(), mean=mean(Time), sd=sd(Time), se=2*sd/sqrt(n))
+```
+
+Une fois que l'on a le resumé pour tout les dataframes de (Size,Type) on peut maintenant afficher le tout avec ggplot 
+geom_errorbar -> affiche l'intervalle de confiance
+geom_point -> affiche les points des differents dataframe 
+geom_line -> trace une ligne entre les points d'un même dataframe 
+On veut colorer les points en fonction du Type auquel ils appartiennent 
+
+```{r}
+ggplot(dfsum, aes(x=Size, y=mean, color=Type)) + theme_bw() + geom_errorbar(data=dfsum, width = .2, aes(y=mean, ymin=mean-se, ymax=mean+se)) + geom_point(data = dfsum) + geom_line(data = dfsum)
+```
+
+
+Difficile de conclure avec que 5 mesure 
+Le théoreme centrale limite ne s'applique que pour des cas ou l'on au moins 30 mesures 
+Dans le cas ou le nombre de mesure est inferieure à 30 on peut utiliser la loi de student mais elle a des pre requis telle que la Varibale sur laquelle les mesures sont effectué doit suivre une loi Normal. -> sert à touver la valeur à mettre à la place du 2 pour l'erreur standard. 
+
+
+
+
+
