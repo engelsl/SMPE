@@ -1,0 +1,168 @@
+---
+title: "Sujet-2_Peer-review"
+author: "ENGELS Loïc"
+date: "2023-11-09"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Sujet 2 : le pouvoir d'achat des ouvriers anglais du XVIe au XIXe siècle
+
+A few remarks for understanding the data:
+- Until 1971, the pound sterling was divided into 20 shillings, and a shilling into 12 pence.
+- The wheat price is given in shillings per quarter, a quarter being 15 British pounds or about 6,8 kg.
+- Salaries are given in shillings per week.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(grid)
+library(gridExtra)
+```
+
+
+## Step 1 : Reproduce the graph of Payfair from the numerical data
+
+We gonna take a first look to the data 
+
+```{r}
+data = read.csv("Wheat.csv", header = TRUE)
+data
+```
+
+Let's check if we have any missing inforamtion in those data
+```{r}
+na_records = apply(data, 1, function (x) any(is.na(x)))
+data[na_records,]
+```
+
+We have the last three row of the data set were information about Wages are missing 
+We need to be aware of that if we want to make any conclusion about this graph
+
+Actually remove those three line will help us to see clearly the evoltuion without making mistakes 
+
+```{r}
+rows_to_remove <- c(51, 52, 53)
+data <- data[-rows_to_remove, ]
+tail(data)
+```
+
+
+Know we want to plot the graphics to reproduce the Payfair's graph
+
+```{r}
+
+ggplot(data = data, aes(x = Year)) +
+  geom_bar(aes(y = Wheat), stat = "identity", width = 3, fill = "black") +
+  geom_ribbon(aes(ymin = 0, ymax = Wages), fill = "lightblue", alpha = 0.7) +
+  geom_line(aes(y = Wages), color = "red", size = 1) +
+  labs(title = " Payfair's graph")
+
+```
+## Stet 2 : Have a different y axis on the right for the Wheat and on the left for the Wages
+
+Here we use the function sec.axis to add a new ordinate axes on the right. 
+We switch to put on the right the ordinate axes of Wages on the left.
+We put on the right the ordinate axes of Wheat by scaling up the ordinate axes of Wages. 
+```{r}
+ggplot(data = data, aes(x = Year)) +
+  geom_bar(aes(y = Wheat), stat = "identity", width = 3, fill = "black") +
+  geom_ribbon(aes(ymin = 0, ymax = Wages), fill = "lightblue", alpha = 0.7) +
+  geom_line(aes(y = Wages), color = "red", size = 1) + 
+  scale_y_continuous(
+    name = "Wages in shilling per week",
+    breaks = seq(0, max(data$Wages), by = 5),
+    sec.axis = sec_axis(~.*1, name = "Wheat in shilling per quarter")
+  ) + 
+  scale_x_continuous("Years", breaks = seq(min(data$Year), max(data$Year), by=15)) +
+  labs(title = "Chart showing wheat prices and weekly wages from 1565 to 1810") 
+
+```
+
+We can have an other representation for the curve and shaded surface.
+To improve the visualisation we can have two barplot 
+
+```{r}
+ggplot(data = data, aes(x = Year)) +
+  geom_bar(aes(y = Wheat), stat = "identity", width = 3, fill = "lightblue", color = "darkblue") +
+  geom_bar(aes(y = Wages), stat = "identity", width = 3, fill = "black") +
+  scale_y_continuous(
+    name = "Wages in shilling per week",
+    breaks = seq(0, max(data$Wages), by = 5),
+    sec.axis = sec_axis(~.*1, name = "Wheat in shilling per quarter")
+  ) + 
+  scale_x_continuous("Years", breaks = seq(min(data$Year), max(data$Year), by=15)) +
+  labs(title = "Chart showing wheat prices (blue) and weekly wages (black) from 1565 to 1810") 
+
+```
+
+
+## Step 3 Plot of the workers' purchasing power 
+
+We want here to plot the purchasing power of worker.
+To do that we will plot a curve showing the amount of wheat a worker can buy with a weekly salary over time 
+
+We fisrt will create a new colon corresponding to the division of Wages by Wheat to have the purchasing power of worker 
+```{r}
+data$Power <- data$Wages / data$Wheat
+data
+```
+
+To have a better visualization we will multiply the data by 10 
+```{r}
+data$Power <- data$Power * 10
+data
+```
+Now we can plot the graph 
+
+```{r}
+ggplot(data = data, aes(x = Year)) +
+  geom_line(aes(y = Power), color = "lightgreen" , size = 1) + 
+  scale_y_continuous("Purchasing Power") +
+  scale_x_continuous("Years", breaks = seq(min(data$Year), max(data$Year), by=20)) +
+  labs(title = "Workers' purchasing powers from 1565 to 1810") 
+
+
+
+```
+
+We know want to plot both quantities Wheat and Wages on two different axis to be able of see clearly differences 
+
+```{r}
+gWheat <- ggplot(data = data, aes(x=Year)) +
+            geom_bar(aes(y = Wheat), stat = "identity") +
+            ggtitle("Price of a quarter of Wheat") + 
+            scale_y_reverse() + 
+            ylab("Shilling") + 
+            coord_flip()
+
+gWages <- ggplot(data = data, aes(x=Year)) +
+            geom_bar(aes(y = Wages), stat = "identity") +
+            xlab(NULL) + 
+            ylab("Shilling") + 
+            ggtitle("Weekly salary") +
+            coord_flip()
+
+
+
+gg1 <- ggplot_gtable(ggplot_build(gWheat))
+gg2 <- ggplot_gtable(ggplot_build(gWages))
+
+grid.arrange(gg1,gg2,ncol=2,widths=c(1/2,1/2))
+```
+
+## Step 4 Conclusion 
+
+During this subject I explore a lot of different possibility to print some data. Overall I would prefer to represent data on a same bar plot to ba able to compare them easily since we have the same scale. And to add a plot after that to illustrate more precisely the point that we want to highlight.
+Sometimes we need to have to different ordinates axes to visualize the data, in this specific case we need to be careful of the scale. 
+
+
+
+
+
