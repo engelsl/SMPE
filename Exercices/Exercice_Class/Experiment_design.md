@@ -33,5 +33,14 @@ To do that we can increase slower the size of the problem when we see the change
 
 
 
+## What I try to do 
+
++ launch many application on my computeur to see the impact on the computation time
++ Try to limitate the number(Level) of threads available for the parallel 
++ Launch multiple time the algorithm on edge size problem. (Sometime sequential faster sometime parallel faster)
++ 
+
+
+
 
 
