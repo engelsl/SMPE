@@ -117,7 +117,7 @@ Sur les données recoltés par la NASA on remarque que la temperature à une inf
 De plus lors de l'analyse des données recoltés on peut voir que il n'y a que la donnée la plus petite de température est 53F ce qui est bien superieur au 30F lors du test. Ce qui veut dire que la prediction de l'influence de la température sur la defaillance des joints n'est basé que sur des température supérieure à 50F. 
 
 
-# Module 3 : La main à la pate : une aanlyse réplicable
+# Module 3 : La main à la pate : une analyse réplicable
 
 ## L'analyse reproductible 
 
