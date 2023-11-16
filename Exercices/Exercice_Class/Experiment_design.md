@@ -16,6 +16,13 @@ The machine where we run the code can be fully dedicated to the computation of q
 
 We can also run this code on a personal computer then having not all the ressources dedicated to this algorithm and not optimise to this type of computation. Morevoer we can have other application running in the back that consume ressources. 
 
+
+### Randomness of data 
+
+Since we use a "random" function to generate the data of our problem we can ends up being in the worst scenario or in the best scenario. We can have differents results depending of that. 
+
+To try to approximate the best the time to slove a problem of a giving size we must run it approximatly 10 times and take the average. 
+
 ### Selection of the size of problems 
 
 We know that for small problem having parallel in unefficient since it's deploy too much ressources and it become slower.
